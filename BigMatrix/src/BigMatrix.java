@@ -1,20 +1,30 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class BigMatrix 
 {
+	private HashMap<Integer, HashMap<Integer,Integer>> row;//HashMap<row,HashMap<col,value>>
+	private HashMap<Integer, HashMap<Integer,Integer>> col;//HashMap<col,HashMap<row,value>>
 	public BigMatrix()
 	{
-		throw new UnsupportedOperationException();
+		row= new HashMap<Integer, HashMap<Integer,Integer>>();
+		col= new HashMap<Integer, HashMap<Integer,Integer>>();
 	}
 	
 	public void setValue(int row, int col, int value)
 	{
-		throw new UnsupportedOperationException();
+		HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
+		trow.put(col, value);
+		this.row.put(row, trow);
+		HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
+		trow.put(row, value);
+		this.row.put(col, tcol);
+	
 	}
 	
 	public int getValue(int row, int col)
 	{
-		throw new UnsupportedOperationException();		
+		return this.row.get(row).get(col);		
 	}
 	
 	public List<Integer> getNonEmptyRows()
