@@ -21,7 +21,7 @@ public class BigMatrix
 		trow.put(col, value);
 		this.row.put(row, trow);
 		HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
-		trow.put(row, value);
+		tcol.put(row, value);
 		this.row.put(col, tcol);
 	
 	}
@@ -82,11 +82,11 @@ public class BigMatrix
 	public static void main(String[] args)
 	{
 		BigMatrix test= new BigMatrix();
-		test.setValue(2, 3, 4);
-		test.setValue(2, 5, 0);
-		System.out.println(test.getValue(2, 3));
-		System.out.println(test.getValue(3, 4));
-		System.out.println(test.getValue(2, 5));
+		test.setValue(0, 0, 1);
+		test.setValue(1000, 10, 2);
+		System.out.println(test.getValue(0,0));
+		System.out.println(test.getValue(1000, 10));
+		//System.out.println(test.getValue(2, 5));
 
 		
 	}
