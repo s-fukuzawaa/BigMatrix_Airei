@@ -13,6 +13,10 @@ public class BigMatrix
 	
 	public void setValue(int row, int col, int value)
 	{
+		if(value==0)
+		{
+			return;
+		}
 		HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
 		trow.put(col, value);
 		this.row.put(row, trow);
@@ -24,6 +28,10 @@ public class BigMatrix
 	
 	public int getValue(int row, int col)
 	{
+		if(this.row.get(row).get(col)==null)
+		{
+			return 0;
+		}
 		return this.row.get(row).get(col);		
 	}
 	
@@ -70,5 +78,16 @@ public class BigMatrix
 	public BigMatrix addMatrix(BigMatrix other)
 	{
 		throw new UnsupportedOperationException();
+	}
+	public static void main(String[] args)
+	{
+		BigMatrix test= new BigMatrix();
+		test.setValue(2, 3, 4);
+		test.setValue(2, 5, 0);
+		System.out.println(test.getValue(2, 3));
+		System.out.println(test.getValue(3, 4));
+		System.out.println(test.getValue(2, 5));
+
+		
 	}
 }
