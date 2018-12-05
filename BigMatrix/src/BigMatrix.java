@@ -13,10 +13,6 @@ public class BigMatrix
 	
 	public void setValue(int row, int col, int value)
 	{
-		if(value==0)
-		{
-			return;
-		}
 		
 		if(rowmap.containsKey(row))
 		{
@@ -107,16 +103,17 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
-		test.setValue(0, 0, 2);
-		//test.setValue(10, 1000, 3);
+		test.setValue(1000, 10, 2);
+		test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
-		//test.setValue(1000, 0, 5);
-		//test.setValue(0, 10, 6);
-		//test.setValue(10, 0, 7);
+		test.setValue(1000, 0, 5);
+		test.setValue(0, 10, 6);
+		test.setValue(10, 0, 7);
+		test.setValue(10, 1000, 0);
+		test.setValue(10, 0, 0);
 
-
-		System.out.println(test.getValue(0,0));
+		System.out.println(test.getValue(10,1000));
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
