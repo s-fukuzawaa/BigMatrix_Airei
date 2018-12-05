@@ -3,12 +3,12 @@ import java.util.List;
 
 public class BigMatrix 
 {
-	private HashMap<Integer, HashMap<Integer,Integer>> row;//HashMap<row,HashMap<col,value>>
-	private HashMap<Integer, HashMap<Integer,Integer>> col;//HashMap<col,HashMap<row,value>>
+	private HashMap<Integer, HashMap<Integer,Integer>> rowmap;//HashMap<row,HashMap<col,value>>
+	private HashMap<Integer, HashMap<Integer,Integer>> colmap;//HashMap<col,HashMap<row,value>>
 	public BigMatrix()
 	{
-		row= new HashMap<Integer, HashMap<Integer,Integer>>();
-		col= new HashMap<Integer, HashMap<Integer,Integer>>();
+		rowmap= new HashMap<Integer, HashMap<Integer,Integer>>();
+		colmap= new HashMap<Integer, HashMap<Integer,Integer>>();
 	}
 	
 	public void setValue(int row, int col, int value)
@@ -19,20 +19,20 @@ public class BigMatrix
 		}
 		HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
 		trow.put(col, value);
-		this.row.put(row, trow);
+		rowmap.put(row, trow);
 		HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
 		tcol.put(row, value);
-		this.row.put(col, tcol);
+		colmap.put(col, tcol);
 	
 	}
 	
 	public int getValue(int row, int col)
 	{
-		if(this.row.get(row).get(col)==null)
+		if(this.rowmap.isEmpty()||this.rowmap.containsKey(row)==false||this.rowmap.get(row).containsKey(col)==false)
 		{
 			return 0;
 		}
-		return this.row.get(row).get(col);		
+		return rowmap.get(row).get(col);		
 	}
 	
 	public List<Integer> getNonEmptyRows()
@@ -82,10 +82,8 @@ public class BigMatrix
 	public static void main(String[] args)
 	{
 		BigMatrix test= new BigMatrix();
-		test.setValue(0, 0, 1);
-		test.setValue(1000, 10, 2);
 		System.out.println(test.getValue(0,0));
-		System.out.println(test.getValue(1000, 10));
+		//System.out.println(test.getValue(1000, 10));
 		//System.out.println(test.getValue(2, 5));
 
 		
