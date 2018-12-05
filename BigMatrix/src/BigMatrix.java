@@ -21,16 +21,29 @@ public class BigMatrix
 		if(rowmap.containsKey(row))
 		{
 			rowmap.get(row).put(col, value);
-			colmap.get(col).put(row, value);
-			return;
+			if(colmap.containsKey(col))
+			{
+				colmap.get(col).put(row, value);
+			}
+			else
+			{
+				HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
+				tcol.put(row, value);
+				colmap.put(col, tcol);
+			}
 			
 		}
-		HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
-		trow.put(col, value);
-		rowmap.put(row, trow);
-		HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
-		tcol.put(row, value);
-		colmap.put(col, tcol);
+		else
+		{
+			HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
+			trow.put(col, value);
+			rowmap.put(row, trow);
+			HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
+			tcol.put(row, value);
+			colmap.put(col, tcol);
+
+		}
+		
 		
 		
 	
@@ -94,20 +107,20 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
-		test.setValue(1000, 10, 2);
-		test.setValue(10, 1000, 3);
+		test.setValue(0, 0, 2);
+		//test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
-		test.setValue(1000, 0, 5);
+		//test.setValue(1000, 0, 5);
 		//test.setValue(0, 10, 6);
 		//test.setValue(10, 0, 7);
 
 
 		System.out.println(test.getValue(0,0));
-		System.out.println(test.getValue(1000, 10));
+		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
-		System.out.println(test.getValue(1000,0));
+		System.out.println(test.getValue(1000,0));*/
 		//System.out.println(test.getValue(0,10));
 		//System.out.println(test.getValue(10,0));
 
