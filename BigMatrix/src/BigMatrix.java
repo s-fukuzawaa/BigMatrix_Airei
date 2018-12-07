@@ -80,17 +80,40 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
-		throw new UnsupportedOperationException();
+		HashMap<Integer,Integer> temp=colmap.get(col);
+		Object[] t=temp.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<t.length; i++)
+		{
+			temp2.add(t[i]);
+		}
+		
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyCols()//ckpt 2
 	{
-		throw new UnsupportedOperationException();
+		Object[] temp=colmap.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<temp.length; i++)
+		{
+			temp2.add(temp[i]);
+		}
+		
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
-		throw new UnsupportedOperationException();
+		HashMap<Integer,Integer> temp=rowmap.get(row);
+		Object[] t=temp.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<t.length; i++)
+		{
+			temp2.add(t[i]);
+		}
+		
+		return temp2;
 	}
 	
 	public int getRowSum(int row)//ckpt 2
