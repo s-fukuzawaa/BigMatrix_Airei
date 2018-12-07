@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -65,32 +66,42 @@ public class BigMatrix
 		
 	}
 	
-	public List<Integer> getNonEmptyRows()
+	public List<Integer> getNonEmptyRows()//ckpt 2
+	{
+		ArrayList result= new ArrayList();
+		for(int i=0; i<rowmap.size(); i++)
+		{
+			if(rowmap.containsKey(i))
+			{
+				result.add(i);
+			}
+		}
+		
+		
+		return result;
+	}
+	
+	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
 		throw new UnsupportedOperationException();
 	}
 	
-	public List<Integer> getNonEmptyRowsInColumn(int col)
+	public List<Integer> getNonEmptyCols()//ckpt 2
 	{
 		throw new UnsupportedOperationException();
 	}
 	
-	public List<Integer> getNonEmptyCols()
+	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
 		throw new UnsupportedOperationException();
 	}
 	
-	public List<Integer> getNonEmptyColsInRow(int row)
+	public int getRowSum(int row)//ckpt 2
 	{
 		throw new UnsupportedOperationException();
 	}
 	
-	public int getRowSum(int row)
-	{
-		throw new UnsupportedOperationException();
-	}
-	
-	public int getColSum(int col)
+	public int getColSum(int col)//ckpt 2
 	{
 		throw new UnsupportedOperationException();
 	}
