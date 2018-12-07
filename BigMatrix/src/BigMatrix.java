@@ -68,17 +68,14 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRows()//ckpt 2
 	{
-		ArrayList result= new ArrayList();
-		for(int i=0; i<rowmap.size(); i++)
+		Object[] temp=rowmap.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<temp.length; i++)
 		{
-			if(rowmap.containsKey(i))
-			{
-				result.add(i);
-			}
+			temp2.add(temp[i]);
 		}
 		
-		
-		return result;
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
@@ -134,7 +131,8 @@ public class BigMatrix
 		test.setValue(10, 1000, 0);
 		test.setValue(10, 0, 0);*/
 
-		System.out.println(test.getValue(0,0));
+		List<Integer> te=test.getNonEmptyRows();
+		System.out.println(te);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
