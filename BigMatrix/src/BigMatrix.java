@@ -73,7 +73,15 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			temp2.add(temp[i]);
+			Object[] in= rowmap.get(temp[i]).keySet().toArray();
+			for(int j=0; j<in.length; j++)
+			{
+				if(rowmap.get(temp[i]).get(in[j])!=0)
+				{
+					temp2.add(temp[j]);
+					break;
+				}
+			}
 		}
 		
 		return temp2;
@@ -81,21 +89,18 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
-		Object[] t=colmap.get(col).keySet().toArray();
-
-		ArrayList temp=new ArrayList();
-		for(int i=0; i<t.length; i++)
-		{
-			if(colmap.get(col).get(t[i])!=0)
+		ArrayList temp2=new ArrayList();
+		Object[] in= colmap.get(col).keySet().toArray();
+			for(int j=0; j<in.length; j++)
 			{
-				temp.add(t[i]);
-				return temp;
+				if(colmap.get(col).get(in[j])!=0)
+				{
+					temp2.add(in[j]);
+				}
 			}
-			temp.add(t[i]);
-
-		}
 		
-		return temp;
+		
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyCols()//ckpt 2
@@ -104,7 +109,15 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			temp2.add(temp[i]);
+			Object[] in= colmap.get(temp[i]).keySet().toArray();
+			for(int j=0; j<in.length; j++)
+			{
+				if(colmap.get(temp[i]).get(in[j])!=0)
+				{
+					temp2.add(temp[j]);
+					break;
+				}
+			}
 		}
 		
 		return temp2;
@@ -112,26 +125,24 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
-		Object[] t=rowmap.get(row).keySet().toArray();
-		
-		ArrayList temp=new ArrayList();
-		for(int i=0; i<t.length; i++)
-		{
-			if(rowmap.get(row).get(t[i])!=0)
+		ArrayList temp2=new ArrayList();
+		Object[] in= rowmap.get(row).keySet().toArray();
+			for(int j=0; j<in.length; j++)
 			{
-				temp.add(t[i]);
-				return temp;
+				if(rowmap.get(row).get(in[j])!=0)
+				{
+					temp2.add(in[j]);
+				}
 			}
-			temp.add(t[i]);
-
-		}
 		
-		return temp;
+		
+		return temp2;
 	}
 	
 	public int getRowSum(int row)//ckpt 2
 	{
 		throw new UnsupportedOperationException();
+
 	}
 	
 	public int getColSum(int col)//ckpt 2
