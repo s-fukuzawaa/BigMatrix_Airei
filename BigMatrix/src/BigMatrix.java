@@ -73,15 +73,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] in= rowmap.get(temp[i]).keySet().toArray();
-			for(int j=0; j<in.length; j++)
-			{
-				if(rowmap.get(temp[i]).get(in[j])!=0)
-				{
-					temp2.add(temp[j]);
-					break;
-				}
-			}
+			temp2.add(temp[i]);
 		}
 		
 		return temp2;
@@ -89,18 +81,21 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
-		ArrayList temp2=new ArrayList();
-		Object[] in= colmap.get(col).keySet().toArray();
-			for(int j=0; j<in.length; j++)
+		Object[] t=colmap.get(col).keySet().toArray();
+
+		ArrayList temp=new ArrayList();
+		for(int i=0; i<t.length; i++)
+		{
+			if(colmap.get(col).get(t[i])!=0)
 			{
-				if(colmap.get(col).get(in[j])!=0)
-				{
-					temp2.add(in[j]);
-				}
+				temp.add(t[i]);
+				return temp;
 			}
+			temp.add(t[i]);
+
+		}
 		
-		
-		return temp2;
+		return temp;
 	}
 	
 	public List<Integer> getNonEmptyCols()//ckpt 2
@@ -109,15 +104,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] in= colmap.get(temp[i]).keySet().toArray();
-			for(int j=0; j<in.length; j++)
-			{
-				if(colmap.get(temp[i]).get(in[j])!=0)
-				{
-					temp2.add(temp[j]);
-					break;
-				}
-			}
+			temp2.add(temp[i]);
 		}
 		
 		return temp2;
@@ -125,34 +112,54 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
-		ArrayList temp2=new ArrayList();
-		Object[] in= rowmap.get(row).keySet().toArray();
-			for(int j=0; j<in.length; j++)
+		Object[] t=rowmap.get(row).keySet().toArray();
+		
+		ArrayList temp=new ArrayList();
+		for(int i=0; i<t.length; i++)
+		{
+			if(rowmap.get(row).get(t[i])!=0)
 			{
-				if(rowmap.get(row).get(in[j])!=0)
-				{
-					temp2.add(in[j]);
-				}
+				temp.add(t[i]);
+				return temp;
 			}
+			temp.add(t[i]);
+
+		}
 		
-		
-		return temp2;
+		return temp;
 	}
 	
 	public int getRowSum(int row)//ckpt 2
 	{
-		throw new UnsupportedOperationException();
-
+		List<Integer> temp=getNonEmptyColsInRow(row);
+		int result=0;
+		for(int i=0; i<temp.size(); i++)
+		{
+			result+=rowmap.get(row).get(temp.get(i));
+		}
+		return result; 
 	}
 	
 	public int getColSum(int col)//ckpt 2
 	{
-		throw new UnsupportedOperationException();
+		List<Integer> temp=getNonEmptyColsInRow(col);
+		int result=0;
+		for(int i=0; i<temp.size(); i++)
+		{
+			result+=colmap.get(col).get(temp.get(i));
+		}
+		return result; 
 	}
 	
 	public int getTotalSum()
 	{
-		throw new UnsupportedOperationException();
+		Object[] temp= rowmap.keySet().toArray();
+		int result=0;
+		for(int i=0; i<temp.length; i++ )
+		{
+			result+=getRowSum((int) temp[i]);
+		}
+		return result;
 	}
 	
 	public BigMatrix multiplyByConstant(int constant)
