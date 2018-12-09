@@ -80,15 +80,18 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
-		HashMap<Integer,Integer> temp=colmap.get(col);
-		Object[] t=temp.keySet().toArray();
-		ArrayList temp2=new ArrayList();
+		Object[] t=colmap.get(col).keySet().toArray();
+
+		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
-			temp2.add(t[i]);
+			if(colmap.get(col).get(t[i])!=0)
+			{
+				temp.add(t[i]);
+			}
 		}
 		
-		return temp2;
+		return temp;
 	}
 	
 	public List<Integer> getNonEmptyCols()//ckpt 2
@@ -105,15 +108,18 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
-		HashMap<Integer,Integer> temp=rowmap.get(row);
-		Object[] t=temp.keySet().toArray();
-		ArrayList temp2=new ArrayList();
+		Object[] t=rowmap.get(row).keySet().toArray();
+
+		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
-			temp2.add(t[i]);
+			if(rowmap.get(row).get(t[i])!=0)
+			{
+				temp.add(t[i]);
+			}
 		}
 		
-		return temp2;
+		return temp;
 	}
 	
 	public int getRowSum(int row)//ckpt 2
@@ -144,7 +150,7 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
-		test.setValue(1, 0, 0);
+		test.setValue(1, 0, 3);
 		/*test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
@@ -154,7 +160,7 @@ public class BigMatrix
 		test.setValue(10, 1000, 0);
 		test.setValue(10, 0, 0);*/
 
-		List<Integer> te=test.getNonEmptyRows();
+		List<Integer> te=test.getNonEmptyRowsInColumn(0);
 		System.out.println(te);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
