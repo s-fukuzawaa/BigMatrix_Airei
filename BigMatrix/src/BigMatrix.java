@@ -73,7 +73,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] t=rowmap.get(temp[i]).values().toArray();
+			/*Object[] t=rowmap.get(temp[i]).values().toArray();
 			for(int j=0; j<t.length;j++)
 			{
 				if((int)t[j]!=0)
@@ -81,6 +81,10 @@ public class BigMatrix
 					temp2.add(temp[i]);
 					break;
 				}
+			}*/
+			if(rowmap.get(temp[i]).entrySet().contains(0)==false)
+			{
+				temp2.add(temp[i]);
 			}
 		}
 		
@@ -113,7 +117,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] t=colmap.get(temp[i]).values().toArray();
+			/*Object[] t=colmap.get(temp[i]).values().toArray();
 			for(int j=0; j<t.length;j++)
 			{
 				if((int)t[j]!=0)
@@ -121,6 +125,10 @@ public class BigMatrix
 					temp2.add(temp[i]);
 					break;
 				}
+			}*/
+			if(colmap.get(temp[i]).entrySet().contains(0)==false)
+			{
+				temp2.add(temp[i]);
 			}
 		}
 		
@@ -211,7 +219,7 @@ public class BigMatrix
 		test.setValue(1000, 10, 0);
 		test.setValue(0, 10, 0);
 
-		List<Integer> te=test.getNonEmptyCols();
+		List<Integer> te=test.getNonEmptyRows();
 		System.out.println(te);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
