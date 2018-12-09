@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -88,7 +89,10 @@ public class BigMatrix
 			if(colmap.get(col).get(t[i])!=0)
 			{
 				temp.add(t[i]);
+				return temp;
 			}
+			temp.add(t[i]);
+
 		}
 		
 		return temp;
@@ -109,14 +113,17 @@ public class BigMatrix
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
 		Object[] t=rowmap.get(row).keySet().toArray();
-
+		
 		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
 			if(rowmap.get(row).get(t[i])!=0)
 			{
 				temp.add(t[i]);
+				return temp;
 			}
+			temp.add(t[i]);
+
 		}
 		
 		return temp;
