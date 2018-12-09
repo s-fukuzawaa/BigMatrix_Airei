@@ -1,21 +1,16 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class BigMatrix 
 {
 	private HashMap<Integer, HashMap<Integer,Integer>> rowmap;//HashMap<row,HashMap<col,value>>
 	private HashMap<Integer, HashMap<Integer,Integer>> colmap;//HashMap<col,HashMap<row,value>>
-	private ArrayList nonemptyrow;
-	private ArrayList nonemptycol;
 	public BigMatrix()
 	{
 		rowmap= new HashMap<Integer, HashMap<Integer,Integer>>();
 		colmap= new HashMap<Integer, HashMap<Integer,Integer>>();
-		nonemptyrow= new ArrayList();
-		nonemptycol= new ArrayList();
 	}
 	
 	public void setValue(int row, int col, int value)
@@ -23,10 +18,6 @@ public class BigMatrix
 		
 		if(rowmap.containsKey(row))
 		{
-			if(value==0)
-			{
-				nonemptyrow.remove(row);
-			}
 			rowmap.get(row).put(col, value);
 			if(colmap.containsKey(col))
 			{
@@ -37,24 +28,16 @@ public class BigMatrix
 				HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
 				tcol.put(row, value);
 				colmap.put(col, tcol);
-				if(value!=0)
-				nonemptycol.add(col);
 			}
 			
 		}
 		else if(colmap.containsKey(col))
 		{
-			if(value==0)
-			{
-				nonemptycol.remove(col);
-			}
 			colmap.get(col).put(row, value);
 			
 				HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
 				trow.put(col, value);
 				rowmap.put(row, trow);
-				if(value!=0)
-				nonemptyrow.add(row);
 			
 			
 		}		
@@ -63,13 +46,9 @@ public class BigMatrix
 			HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
 			trow.put(col, value);
 			rowmap.put(row, trow);
-			if(value!=0)
-			nonemptyrow.add(row);
 			HashMap<Integer,Integer> tcol= new HashMap<Integer,Integer>();
 			tcol.put(row, value);
 			colmap.put(col, tcol);
-			if(value!=0)
-			nonemptycol.add(col);
 
 		}
 		
@@ -90,7 +69,22 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRows()//ckpt 2
 	{
-		return nonemptyrow;
+		Object[] temp=rowmap.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<temp.length; i++)
+		{
+			Object[] t=rowmap.get(temp[i]).values().toArray();
+			for(int j=0; j<t.length;j++)
+			{
+				if((int)t[j]!=0)
+				{
+					temp2.add(temp[i]);
+					break;
+				}
+			}
+		}
+		
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
@@ -115,8 +109,22 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyCols()//ckpt 2
 	{
+		Object[] temp=colmap.keySet().toArray();
+		ArrayList temp2=new ArrayList();
+		for(int i=0; i<temp.length; i++)
+		{
+			Object[] t=colmap.get(temp[i]).values().toArray();
+			for(int j=0; j<t.length;j++)
+			{
+				if((int)t[j]!=0)
+				{
+					temp2.add(temp[i]);
+					break;
+				}
+			}
+		}
 		
-		return nonemptycol;
+		return temp2;
 	}
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
