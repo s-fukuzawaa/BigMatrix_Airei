@@ -82,17 +82,14 @@ public class BigMatrix
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
 		Object[] t=colmap.get(col).keySet().toArray();
-
+		
 		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
 			if(colmap.get(col).get(t[i])!=0)
 			{
 				temp.add(t[i]);
-				return temp;
 			}
-			temp.add(t[i]);
-
 		}
 		
 		return temp;
@@ -120,10 +117,7 @@ public class BigMatrix
 			if(rowmap.get(row).get(t[i])!=0)
 			{
 				temp.add(t[i]);
-				return temp;
 			}
-			temp.add(t[i]);
-
 		}
 		
 		return temp;
@@ -176,14 +170,14 @@ public class BigMatrix
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
 		test.setValue(1, 0, 3);
-		/*test.setValue(10, 1000, 3);
+		test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
 		test.setValue(1000, 0, 5);
 		test.setValue(0, 10, 6);
 		test.setValue(10, 0, 7);
 		test.setValue(10, 1000, 0);
-		test.setValue(10, 0, 0);*/
+		test.setValue(10, 0, 0);
 
 		List<Integer> te=test.getNonEmptyRowsInColumn(0);
 		System.out.println(te);
