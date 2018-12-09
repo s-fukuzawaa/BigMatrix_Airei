@@ -81,6 +81,10 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyRowsInColumn(int col)//ckpt 2
 	{
+		if(colmap.containsKey(col)==false)
+		{
+			return new ArrayList();
+		}
 		Object[] t=colmap.get(col).keySet().toArray();
 		
 		ArrayList temp=new ArrayList();
@@ -109,6 +113,10 @@ public class BigMatrix
 	
 	public List<Integer> getNonEmptyColsInRow(int row)//ckpt 2
 	{
+		if(rowmap.containsKey(row)==false)
+		{
+			return new ArrayList();
+		}
 		Object[] t=rowmap.get(row).keySet().toArray();
 		
 		ArrayList temp=new ArrayList();
@@ -125,6 +133,10 @@ public class BigMatrix
 	
 	public int getRowSum(int row)//ckpt 2
 	{
+		if(rowmap.containsKey(row)==false)
+		{
+			return 0;
+		}
 		List<Integer> temp=getNonEmptyColsInRow(row);
 		int result=0;
 		for(int i=0; i<temp.size(); i++)
@@ -136,6 +148,10 @@ public class BigMatrix
 	
 	public int getColSum(int col)//ckpt 2
 	{
+		if(colmap.containsKey(col)==false)
+		{
+			return 0;
+		}
 		List<Integer> temp=getNonEmptyColsInRow(col);
 		int result=0;
 		for(int i=0; i<temp.size(); i++)
