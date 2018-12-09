@@ -23,6 +23,10 @@ public class BigMatrix
 		
 		if(rowmap.containsKey(row))
 		{
+			if(value==0)
+			{
+				nonemptyrow.remove(row);
+			}
 			rowmap.get(row).put(col, value);
 			if(colmap.containsKey(col))
 			{
@@ -40,6 +44,10 @@ public class BigMatrix
 		}
 		else if(colmap.containsKey(col))
 		{
+			if(value==0)
+			{
+				nonemptycol.remove(col);
+			}
 			colmap.get(col).put(row, value);
 			
 				HashMap<Integer,Integer> trow= new HashMap<Integer,Integer>();
