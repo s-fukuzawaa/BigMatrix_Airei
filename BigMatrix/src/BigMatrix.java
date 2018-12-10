@@ -165,7 +165,7 @@ public class BigMatrix
 		{
 			return 0;
 		}
-		List<Integer> temp=getNonEmptyColsInRow(col);
+		List<Integer> temp=getNonEmptyRowsInColumn(col);
 		int result=0;
 		for(int i=0; i<temp.size(); i++)
 		{
