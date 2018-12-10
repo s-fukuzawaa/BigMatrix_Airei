@@ -80,15 +80,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] t=rowmap.get(temp[i]).values().toArray();
-			for(int j=0; j<t.length;j++)
-			{
-				if((int)t[j]!=0)
-				{
-					temp2.add(temp[i]);
-					break;
-				}
-			}
+			temp2.add(temp[i]);
 			
 		}
 		
@@ -106,10 +98,8 @@ public class BigMatrix
 		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
-			if(colmap.get(col).get(t[i])!=0)
-			{
-				temp.add(t[i]);
-			}
+			temp.add(t[i]);
+			
 		}
 		
 		return temp;
@@ -121,15 +111,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			Object[] t=colmap.get(temp[i]).values().toArray();
-			for(int j=0; j<t.length;j++)
-			{
-				if((int)t[j]!=0)
-				{
-					temp2.add(temp[i]);
-					break;
-				}
-			}
+			temp2.add(temp[i]);
 		}
 		
 		return temp2;
@@ -146,10 +128,7 @@ public class BigMatrix
 		ArrayList temp=new ArrayList();
 		for(int i=0; i<t.length; i++)
 		{
-			if(rowmap.get(row).get(t[i])!=0)
-			{
-				temp.add(t[i]);
-			}
+			temp.add(t[i]);
 		}
 		
 		return temp;
