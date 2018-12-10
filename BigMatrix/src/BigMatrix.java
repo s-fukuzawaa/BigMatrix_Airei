@@ -84,13 +84,13 @@ public class BigMatrix
 	
 	}
 	
-	public int getValue(int row, int col)
+	public int getValue(Object temp1, Object inside)
 	{
-		if(this.rowmap.isEmpty()||this.colmap.isEmpty()||rowmap.containsKey(row)==false||colmap.containsKey(col)==false||rowmap.get(row).containsKey(col)==false||colmap.get(col).containsKey(row)==false)
+		if(this.rowmap.isEmpty()||this.colmap.isEmpty()||rowmap.containsKey(temp1)==false||colmap.containsKey(inside)==false||rowmap.get(temp1).containsKey(inside)==false||colmap.get(inside).containsKey(temp1)==false)
 		{
 			return 0;
 		}
-		return rowmap.get(row).get(col);
+		return rowmap.get(temp1).get(inside);
 		
 	}
 	
@@ -209,7 +209,7 @@ public class BigMatrix
 			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.rowmap.get(temp1[i]).put((Integer) inside[j],result.getValue(i, j)*constant);
+				result.rowmap.get(temp1[i]).put((Integer) inside[j],result.getValue(temp1[i], inside[j])*constant);
 			}
 		}
 		Object[] temp2=colmap.keySet().toArray();
@@ -218,7 +218,7 @@ public class BigMatrix
 			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.colmap.get(temp2[i]).put((Integer) inside[j], result.getValue(i, j)*constant);
+				result.colmap.get(temp2[i]).put((Integer) inside[j], result.getValue(temp2[i], inside[j])*constant);
 			}
 		}
 		return result;
@@ -236,7 +236,7 @@ public class BigMatrix
 			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(i, j)+other.getValue(i, j));
+				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(temp1[i], inside[j])+other.getValue(i, j));
 			}
 		}
 		Object[] temp2=colmap.keySet().toArray();
@@ -245,7 +245,7 @@ public class BigMatrix
 			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(i, j)+other.getValue(i, j));
+				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(temp2[i], inside[j])+other.getValue(i, j));
 			}
 		}
 		return result;
@@ -255,19 +255,17 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
-		test.setValue(1, 0, 0);
-		/*test.setValue(1000, 10, 2);
+		test.setValue(1000, 10, 2);
 		test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
 		test.setValue(1000, 0, 5);
 		test.setValue(0, 10, 6);
 		test.setValue(10, 0, 7);
-		test.setValue(1000, 10, 0);
+		/*test.setValue(1000, 10, 0);
 		test.setValue(0, 10, 0);*/
 
-		List<Integer> te=test.getNonEmptyCols();
-		System.out.println(te);
+		test.addMatrix(test);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
