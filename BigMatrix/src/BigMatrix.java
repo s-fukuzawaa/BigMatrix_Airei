@@ -17,6 +17,11 @@ public class BigMatrix
 	{
 		if(value==0)
 		{
+			if(rowmap.containsKey(row)==false)
+			{
+				return;
+			}
+
 			
 				rowmap.get(row).remove(col);
 
@@ -198,7 +203,8 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		test.setValue(0, 0, 1);
-		test.setValue(1000, 10, 2);
+		test.setValue(1, 0, 0);
+		/*test.setValue(1000, 10, 2);
 		test.setValue(10, 1000, 3);
 		
 		test.setValue(0, 1000, 4);
@@ -206,7 +212,7 @@ public class BigMatrix
 		test.setValue(0, 10, 6);
 		test.setValue(10, 0, 7);
 		test.setValue(1000, 10, 0);
-		test.setValue(0, 10, 0);
+		test.setValue(0, 10, 0);*/
 
 		List<Integer> te=test.getNonEmptyCols();
 		System.out.println(te);
