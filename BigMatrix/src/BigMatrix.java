@@ -17,10 +17,11 @@ public class BigMatrix
 	{
 		if(value==0)
 		{
-			if(rowmap.containsKey(row)==false)
+			if(rowmap.containsKey(row)==false&&colmap.containsKey(col)==false)
 			{
 				return;
 			}
+			
 
 			
 				rowmap.get(row).remove(col);
