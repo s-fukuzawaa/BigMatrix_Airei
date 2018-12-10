@@ -73,7 +73,7 @@ public class BigMatrix
 		ArrayList temp2=new ArrayList();
 		for(int i=0; i<temp.length; i++)
 		{
-			/*Object[] t=rowmap.get(temp[i]).values().toArray();
+			Object[] t=rowmap.get(temp[i]).values().toArray();
 			for(int j=0; j<t.length;j++)
 			{
 				if((int)t[j]!=0)
@@ -81,11 +81,8 @@ public class BigMatrix
 					temp2.add(temp[i]);
 					break;
 				}
-			}*/
-			if(rowmap.get(temp[i]).entrySet().contains(0)==false)
-			{
-				temp2.add(temp[i]);
 			}
+			
 		}
 		
 		return temp2;
