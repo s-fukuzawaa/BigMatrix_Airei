@@ -17,7 +17,11 @@ public class BigMatrix
 	{
 		if(value==0)
 		{
-			if(rowmap.containsKey(row)==false&&colmap.containsKey(col)==false)
+			if(rowmap.containsKey(row)==false)
+			{
+				return;
+			}
+			if(colmap.containsKey(col)==false)
 			{
 				return;
 			}
