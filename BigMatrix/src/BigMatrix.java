@@ -236,7 +236,7 @@ public class BigMatrix
 			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(temp1[i], inside[j])+other.getValue(i, j));
+				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(temp1[i], inside[j])+other.getValue(temp1[i], inside[j]));
 			}
 		}
 		Object[] temp2=colmap.keySet().toArray();
@@ -245,7 +245,7 @@ public class BigMatrix
 			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
 			for(int j=0; j<inside.length; j++)
 			{
-				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(temp2[i], inside[j])+other.getValue(i, j));
+				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(temp2[i], inside[j])+other.getValue(temp2[i], inside[j]));
 			}
 		}
 		return result;
