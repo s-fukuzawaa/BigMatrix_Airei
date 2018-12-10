@@ -197,12 +197,59 @@ public class BigMatrix
 	
 	public BigMatrix multiplyByConstant(int constant)
 	{
-		throw new UnsupportedOperationException();
+		BigMatrix result= new BigMatrix();
+		result.rowmap=rowmap;
+		result.colmap=colmap;
+		
+		
+		
+		Object[] temp1=rowmap.keySet().toArray();
+		for(int i=0; i<temp1.length; i++)
+		{
+			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
+			{
+				result.rowmap.get(temp1[i]).put((Integer) inside[j],result.getValue(i, j)*constant);
+			}
+		}
+		Object[] temp2=colmap.keySet().toArray();
+		for(int i=0; i<temp2.length; i++)
+		{
+			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
+			{
+				result.colmap.get(temp2[i]).put((Integer) inside[j], result.getValue(i, j)*constant);
+			}
+		}
+		return result;
+
 	}
 	
 	public BigMatrix addMatrix(BigMatrix other)
 	{
-		throw new UnsupportedOperationException();
+		BigMatrix result= new BigMatrix();
+		result.rowmap=rowmap;
+		result.colmap=colmap;
+		Object[] temp1=rowmap.keySet().toArray();
+		for(int i=0; i<temp1.length; i++)
+		{
+			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
+			{
+				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(i, j)+other.getValue(i, j));
+			}
+		}
+		Object[] temp2=colmap.keySet().toArray();
+		for(int i=0; i<temp2.length; i++)
+		{
+			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
+			{
+				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(i, j)+other.getValue(i, j));
+			}
+		}
+		return result;
+		
 	}
 	public static void main(String[] args)
 	{
