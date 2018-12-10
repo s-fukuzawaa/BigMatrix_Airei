@@ -15,6 +15,13 @@ public class BigMatrix
 	
 	public void setValue(int row, int col, int value)
 	{
+		if(value==0)
+		{
+			rowmap.get(row).remove(col);
+			colmap.get(col).remove(row);
+			return;
+			
+		}
 		
 		if(rowmap.containsKey(row))
 		{
@@ -212,7 +219,7 @@ public class BigMatrix
 		test.setValue(1000, 10, 0);
 		test.setValue(0, 10, 0);
 
-		List<Integer> te=test.getNonEmptyCols();
+		int te=test.getValue(1000, 10);
 		System.out.println(te);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
