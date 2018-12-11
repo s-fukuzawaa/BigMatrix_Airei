@@ -199,8 +199,16 @@ public class BigMatrix
 	{
 		
 		BigMatrix result= new BigMatrix();
+		if(constant==0)
+		{
+			return result;
+		}
 		result.rowmap=rowmap;
 		result.colmap=colmap;
+		if(constant==1)
+		{
+			return result;
+		}
 		Object[] rowt=rowmap.keySet().toArray();
 		Object[] colt=colmap.keySet().toArray();
 
