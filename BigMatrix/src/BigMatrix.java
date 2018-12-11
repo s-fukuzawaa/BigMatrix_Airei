@@ -199,16 +199,6 @@ public class BigMatrix
 	{
 		
 		BigMatrix result= new BigMatrix();
-		if(constant==0)
-		{
-			return result;
-		}
-		result.rowmap=rowmap;
-		result.colmap=colmap;
-		if(constant==1)
-		{
-			return result;
-		}
 		Object[] rowt=rowmap.keySet().toArray();
 		Object[] colt=colmap.keySet().toArray();
 
@@ -216,19 +206,18 @@ public class BigMatrix
 		{
 			for(int j=0; j<colt.length; j++)
 			{
-				result.setValue((Integer)rowt[i], (Integer)colt[j], constant*result.getValue(rowt[i], colt[j]));
+				result.setValue((Integer)rowt[i], (Integer)colt[j], constant*getValue(rowt[i], colt[j]));
 			}
 		}
 		
 		return result;
+		
 
 	}
 	
 	public BigMatrix addMatrix(BigMatrix other)
 	{
 		BigMatrix result= new BigMatrix();
-		result.rowmap=rowmap;
-		result.colmap=colmap;
 		Object[] rowt=other.rowmap.keySet().toArray();
 		Object[] colt=other.colmap.keySet().toArray();
 
@@ -236,7 +225,7 @@ public class BigMatrix
 		{
 			for(int j=0; j<colt.length; j++)
 			{
-				result.setValue((Integer)rowt[i], (Integer)colt[j], other.getValue(rowt[i], colt[j])+result.getValue(rowt[i], colt[j]));
+				result.setValue((Integer)rowt[i], (Integer)colt[j], other.getValue(rowt[i], colt[j])+getValue(rowt[i], colt[j]));
 			}
 		}
 		
@@ -246,7 +235,9 @@ public class BigMatrix
 	public static void main(String[] args)
 	{
 		BigMatrix test= new BigMatrix();
-		test.setValue(0, 0, 1);
+		BigMatrix test1= new BigMatrix();
+		test1.setValue(0, 0, 1);
+		/*test.setValue(0, 0, 1);
 		test.setValue(1000, 10, 2);
 		test.setValue(10, 1000, 3);
 		
@@ -257,7 +248,7 @@ public class BigMatrix
 		/*test.setValue(1000, 10, 0);
 		test.setValue(0, 10, 0);*/
 
-		test.addMatrix(test);
+		BigMatrix sum=test.addMatrix(test1);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
