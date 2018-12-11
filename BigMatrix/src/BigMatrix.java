@@ -230,24 +230,17 @@ public class BigMatrix
 		BigMatrix result= new BigMatrix();
 		result.rowmap=rowmap;
 		result.colmap=colmap;
-		Object[] temp1=rowmap.keySet().toArray();
-		for(int i=0; i<temp1.length; i++)
+		Object[] rowt=other.rowmap.keySet().toArray();
+		Object[] colt=other.colmap.keySet().toArray();
+
+		for(int i=0; i<rowt.length; i++)
 		{
-			Object[] inside=rowmap.get(temp1[i]).keySet().toArray();
-			for(int j=0; j<inside.length; j++)
+			for(int j=0; j<colt.length; j++)
 			{
-				result.rowmap.get(temp1[i]).put((Integer) inside[j], result.getValue(temp1[i], inside[j])+other.getValue(temp1[i], inside[j]));
+				result.setValue((Integer)rowt[i], (Integer)colt[j], other.getValue(rowt[i], colt[j])+result.getValue(rowt[i], colt[j]));
 			}
 		}
-		Object[] temp2=colmap.keySet().toArray();
-		for(int i=0; i<temp2.length; i++)
-		{
-			Object[] inside=colmap.get(temp2[i]).keySet().toArray();
-			for(int j=0; j<inside.length; j++)
-			{
-				result.colmap.get(temp2[i]).put((Integer) inside[j],result.getValue(temp2[i], inside[j])+other.getValue(temp2[i], inside[j]));
-			}
-		}
+		
 		return result;
 		
 	}
