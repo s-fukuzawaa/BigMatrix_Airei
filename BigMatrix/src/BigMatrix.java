@@ -199,15 +199,13 @@ public class BigMatrix
 	{
 		
 		BigMatrix result= new BigMatrix();
-		result.colmap.putAll(colmap);
-		result.rowmap.putAll(rowmap);
 		Object[] a=result.rowmap.keySet().toArray();
 		Object[] b=result.colmap.keySet().toArray();
 		for(int i=0; i<a.length; i++)
 		{
 			for(int j=0; j<b.length; j++)
 			{
-				result.setValue((Integer)a[i], (Integer)b[j], result.getValue(a[i], b[j])*constant);
+				result.setValue((Integer)a[i], (Integer)b[j], getValue(a[i], b[j])*constant);
 			}
 		}
 		
