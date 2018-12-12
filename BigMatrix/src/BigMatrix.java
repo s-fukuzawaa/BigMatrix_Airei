@@ -218,25 +218,18 @@ public class BigMatrix
 	public BigMatrix addMatrix(BigMatrix other)
 	{
 		BigMatrix result= new BigMatrix();
-		Object[] rowt=other.rowmap.keySet().toArray();
-		Object[] colt=other.colmap.keySet().toArray();
-		Object[] row= rowmap.keySet().toArray();
-		Object[] col=colmap.keySet().toArray();
-
-		for(int i=0; i<rowt.length; i++)
-		{
-			for(int j=0; j<colt.length; j++)
-			{
-				result.setValue((Integer)rowt[i], (Integer)colt[j], other.getValue(rowt[i], colt[j])+getValue(rowt[i], colt[j]));
-			}
-		}
+		result.rowmap.putAll(rowmap);
+		result.colmap.putAll(colmap);
+		Object[] row=other.rowmap.keySet().toArray();
+		Object[] col=other.colmap.keySet().toArray();
 		for(int i=0; i<row.length; i++)
 		{
 			for(int j=0; j<col.length; j++)
 			{
-				result.setValue((Integer)row[i], (Integer)col[j], other.getValue(row[i], col[j])+getValue(row[i], col[j]));
+				result.setValue((Integer)row[i], (Integer)col[j], result.getValue(row[i], col[j])+other.getValue(row[i], col[j]));
 			}
 		}
+		
 		
 		return result;
 		
