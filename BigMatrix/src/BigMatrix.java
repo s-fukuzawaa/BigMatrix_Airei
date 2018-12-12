@@ -200,12 +200,13 @@ public class BigMatrix
 		
 		BigMatrix result= new BigMatrix();
 		Object[] a=rowmap.keySet().toArray();
-		Object[] b=colmap.keySet().toArray();
 		for(int i=0; i<a.length; i++)
 		{
-			for(int j=0; j<b.length; j++)
+			Object[] temp=rowmap.get(a[i]).keySet().toArray();
+			for(int j=0; j<temp.length; j++)
 			{
-				result.setValue((Integer)a[i], (Integer)b[j], getValue(a[i], b[j])*constant);
+		
+				result.setValue((Integer)a[i], (Integer)temp[j], getValue(a[i], temp[j])*constant);
 			}
 		}
 		
