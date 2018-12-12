@@ -199,8 +199,8 @@ public class BigMatrix
 	{
 		
 		BigMatrix result= new BigMatrix();
-		Object[] a=result.rowmap.keySet().toArray();
-		Object[] b=result.colmap.keySet().toArray();
+		Object[] a=rowmap.keySet().toArray();
+		Object[] b=colmap.keySet().toArray();
 		for(int i=0; i<a.length; i++)
 		{
 			for(int j=0; j<b.length; j++)
