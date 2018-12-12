@@ -198,16 +198,29 @@ public class BigMatrix
 	public BigMatrix multiplyByConstant(int constant)
 	{
 		
+		
 		BigMatrix result= new BigMatrix();
-		result.colmap.putAll(colmap);
 		result.rowmap.putAll(rowmap);
-		Object[] a=result.rowmap.keySet().toArray();
-		Object[] b=result.colmap.keySet().toArray();
-		for(int i=0; i<a.length; i++)
+		result.colmap.putAll(colmap);
+		
+		
+		
+		Object[] temp1=result.rowmap.keySet().toArray();
+		for(int i=0; i<temp1.length; i++)
 		{
-			for(int j=0; j<b.length; j++)
+			Object[] inside=result.rowmap.get(temp1[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
 			{
-				result.setValue((Integer)a[i], (Integer)b[j], result.getValue(a[i], b[j])*constant);
+				result.rowmap.get(temp1[i]).put((Integer) inside[j],result.getValue(temp1[i], inside[j])*constant);
+			}
+		}
+		Object[] temp2=result.colmap.keySet().toArray();
+		for(int i=0; i<temp2.length; i++)
+		{
+			Object[] inside=result.colmap.get(temp2[i]).keySet().toArray();
+			for(int j=0; j<inside.length; j++)
+			{
+				result.colmap.get(temp2[i]).put((Integer) inside[j], result.getValue(temp2[i], inside[j])*constant);
 			}
 		}
 
@@ -269,7 +282,7 @@ public class BigMatrix
 		
 
 		BigMatrix sum=test.addMatrix(test1);
-		BigMatrix result=sum.addMatrix(test2);
+		BigMatrix result=sum.multiplyByConstant(3);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
