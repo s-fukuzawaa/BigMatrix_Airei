@@ -198,32 +198,19 @@ public class BigMatrix
 	public BigMatrix multiplyByConstant(int constant)
 	{
 		
-		
 		BigMatrix result= new BigMatrix();
-		result.rowmap.putAll(rowmap);
 		result.colmap.putAll(colmap);
-		
-		
-		
-		Object[] temp1=result.rowmap.keySet().toArray();
-		for(int i=0; i<temp1.length; i++)
+		result.rowmap.putAll(rowmap);
+		Object[] a=result.rowmap.keySet().toArray();
+		Object[] b=result.colmap.keySet().toArray();
+		for(int i=0; i<a.length; i++)
 		{
-			Object[] inside=result.rowmap.get(temp1[i]).keySet().toArray();
-			for(int j=0; j<inside.length; j++)
+			for(int j=0; j<b.length; j++)
 			{
-				result.rowmap.get(temp1[i]).put((Integer) inside[j],result.getValue(temp1[i], inside[j])*constant);
+				result.setValue((Integer)a[i], (Integer)b[j], result.getValue(a[i], b[j])*constant);
 			}
 		}
-		Object[] temp2=result.colmap.keySet().toArray();
-		for(int i=0; i<temp2.length; i++)
-		{
-			Object[] inside=result.colmap.get(temp2[i]).keySet().toArray();
-			for(int j=0; j<inside.length; j++)
-			{
-				result.colmap.get(temp2[i]).put((Integer) inside[j], result.getValue(temp2[i], inside[j])*constant);
-			}
-		}
-
+		
 		
 		return result;
 		
