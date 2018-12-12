@@ -220,12 +220,21 @@ public class BigMatrix
 		BigMatrix result= new BigMatrix();
 		Object[] rowt=other.rowmap.keySet().toArray();
 		Object[] colt=other.colmap.keySet().toArray();
+		Object[] row= rowmap.keySet().toArray();
+		Object[] col=colmap.keySet().toArray();
 
 		for(int i=0; i<rowt.length; i++)
 		{
 			for(int j=0; j<colt.length; j++)
 			{
 				result.setValue((Integer)rowt[i], (Integer)colt[j], other.getValue(rowt[i], colt[j])+getValue(rowt[i], colt[j]));
+			}
+		}
+		for(int i=0; i<row.length; i++)
+		{
+			for(int j=0; j<col.length; j++)
+			{
+				result.setValue((Integer)row[i], (Integer)col[j], other.getValue(row[i], col[j])+getValue(row[i], col[j]));
 			}
 		}
 		
@@ -236,19 +245,36 @@ public class BigMatrix
 	{
 		BigMatrix test= new BigMatrix();
 		BigMatrix test1= new BigMatrix();
-		test1.setValue(0, 0, 1);
-		/*test.setValue(0, 0, 1);
+		BigMatrix test2= new BigMatrix();
+		test.setValue(0, 0, 1);
 		test.setValue(1000, 10, 2);
 		test.setValue(10, 1000, 3);
-		
 		test.setValue(0, 1000, 4);
 		test.setValue(1000, 0, 5);
 		test.setValue(0, 10, 6);
 		test.setValue(10, 0, 7);
-		/*test.setValue(1000, 10, 0);
-		test.setValue(0, 10, 0);*/
+		test.setValue(1000, 10, 0);
+		test.setValue(0, 10, 0);
+		
+		test1.setValue(0, 0, 1);
+		test1.setValue(1000, 10, 2);
+		test1.setValue(10, 1000, 3);
+		test1.setValue(0, 1000, 4);
+		test1.setValue(1000, 0, 5);
+		test1.setValue(0, 10, 6);
+		test1.setValue(10, 0, 7);
+		
+		test2.setValue(0, 0, 1);
+		test2.setValue(10000, 100, 2);
+		test2.setValue(100, 10000, 3);
+		test2.setValue(0, 10000, 4);
+		test2.setValue(10000, 0, 5);
+		test2.setValue(0, 100, 6);
+		test2.setValue(100, 0, 7);
+		
 
 		BigMatrix sum=test.addMatrix(test1);
+		BigMatrix result=sum.addMatrix(test2);
 		/*System.out.println(test.getValue(1000, 10));
 		System.out.println(test.getValue(10,1000));
 		System.out.println(test.getValue(0,1000));
